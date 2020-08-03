@@ -119,7 +119,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     private LineProgressView progressView;
     private SeekBarView seekBarView;
     private SimpleTextView timeTextView;
-    private ImageView playbackSpeedButton;
+    private PlaybackSpeedButton playbackSpeedButton;
     private TextView durationTextView;
     private ActionBarMenuItem repeatButton;
     private ActionBarMenuSubItem repeatSongItem;
@@ -577,24 +577,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         durationTextView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         playerLayout.addView(durationTextView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.TOP | Gravity.RIGHT, 0, 96, 20, 0));
 
-        playbackSpeedButton = new ImageView(context);
-        playbackSpeedButton.setScaleType(ImageView.ScaleType.CENTER);
-        playbackSpeedButton.setImageResource(R.drawable.voice2x);
-        playbackSpeedButton.setContentDescription(LocaleController.getString("AccDescrPlayerSpeed", R.string.AccDescrPlayerSpeed));
-        if (AndroidUtilities.density >= 3.0f) {
-            playbackSpeedButton.setPadding(0, 1, 0, 0);
-        }
+        playbackSpeedButton = new PlaybackSpeedButton(context, true);
         playerLayout.addView(playbackSpeedButton, LayoutHelper.createFrame(36, 36, Gravity.TOP | Gravity.RIGHT, 0, 86, 20, 0));
-        playbackSpeedButton.setOnClickListener(v -> {
-            float currentPlaybackSpeed = MediaController.getInstance().getPlaybackSpeed(true);
-            if (currentPlaybackSpeed > 1) {
-                MediaController.getInstance().setPlaybackSpeed(true, 1.0f);
-            } else {
-                MediaController.getInstance().setPlaybackSpeed(true, 1.8f);
-            }
-            updatePlaybackButton();
-        });
-        updatePlaybackButton();
 
         FrameLayout bottomView = new FrameLayout(context) {
             @Override
@@ -971,17 +955,6 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         setMenuItemChecked(reverseOrderItem, SharedConfig.playOrderReversed);
         setMenuItemChecked(repeatListItem, SharedConfig.repeatMode == 1);
         setMenuItemChecked(repeatSongItem, SharedConfig.repeatMode == 2);
-    }
-
-    private void updatePlaybackButton() {
-        float currentPlaybackSpeed = MediaController.getInstance().getPlaybackSpeed(true);
-        if (currentPlaybackSpeed > 1) {
-            playbackSpeedButton.setTag(Theme.key_inappPlayerPlayPause);
-            playbackSpeedButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_inappPlayerPlayPause), PorterDuff.Mode.MULTIPLY));
-        } else {
-            playbackSpeedButton.setTag(Theme.key_inappPlayerClose);
-            playbackSpeedButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_inappPlayerClose), PorterDuff.Mode.MULTIPLY));
-        }
     }
 
     private void onSubItemClick(int id) {

@@ -67,7 +67,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     private FrameLayout frameLayout;
     private View selector;
     private ImageView closeButton;
-    private ImageView playbackSpeedButton;
+    private PlaybackSpeedButton playbackSpeedButton;
     private FragmentContextView additionalContextView;
 
     private MessageObject lastMessageObject;
@@ -156,23 +156,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         addView(titleTextView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 36, Gravity.LEFT | Gravity.TOP, 35, 0, 36, 0));
 
         if (!location) {
-            playbackSpeedButton = new ImageView(context);
-            playbackSpeedButton.setScaleType(ImageView.ScaleType.CENTER);
-            playbackSpeedButton.setImageResource(R.drawable.voice2x);
-            playbackSpeedButton.setContentDescription(LocaleController.getString("AccDescrPlayerSpeed", R.string.AccDescrPlayerSpeed));
-            if (AndroidUtilities.density >= 3.0f) {
-                playbackSpeedButton.setPadding(0, 1, 0, 0);
-            }
-            addView(playbackSpeedButton, LayoutHelper.createFrame(36, 36, Gravity.TOP | Gravity.RIGHT, 0, 0, 36, 0));
-            playbackSpeedButton.setOnClickListener(v -> {
-                float currentPlaybackSpeed = MediaController.getInstance().getPlaybackSpeed(isMusic);
-                if (currentPlaybackSpeed > 1) {
-                    MediaController.getInstance().setPlaybackSpeed(isMusic, 1.0f);
-                } else {
-                    MediaController.getInstance().setPlaybackSpeed(isMusic, 1.8f);
-                }
-            });
-            updatePlaybackButton();
+            playbackSpeedButton = new PlaybackSpeedButton(context, isMusic);
+            addView(playbackSpeedButton, LayoutHelper.createFrame(36, 36, Gravity.RIGHT | Gravity.TOP, 0, 0, 36, 0));
         }
 
         closeButton = new ImageView(context);
@@ -295,17 +280,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         if (playbackSpeedButton == null) {
             return;
         }
-        float currentPlaybackSpeed = MediaController.getInstance().getPlaybackSpeed(isMusic);
-        String key;
-        if (currentPlaybackSpeed > 1) {
-            key = Theme.key_inappPlayerPlayPause;
-        } else {
-            key = Theme.key_inappPlayerClose;
-        }
-        playbackSpeedButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(key), PorterDuff.Mode.MULTIPLY));
-        if (Build.VERSION.SDK_INT >= 21) {
-            playbackSpeedButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(key) & 0x19ffffff, 1, AndroidUtilities.dp(14)));
-        }
+        playbackSpeedButton.update();
     }
 
     public void setAdditionalContextView(FragmentContextView contextView) {
