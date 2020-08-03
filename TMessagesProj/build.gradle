@@ -46,7 +46,7 @@ android {
     buildToolsVersion '30.0.2'
     ndkVersion "21.1.6352462"
 
-    defaultConfig.applicationId = "org.telegram.messenger"
+    defaultConfig.applicationId = "org.telemut.messenger"
 
     sourceSets.main.jniLibs.srcDirs = ['./jni/']
 
