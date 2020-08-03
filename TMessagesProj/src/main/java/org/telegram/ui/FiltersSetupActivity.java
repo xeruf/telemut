@@ -391,15 +391,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         rowCount = 0;
         filterHelpRow = rowCount++;
         int count = getMessagesController().dialogFilters.size();
-        if (!suggestedFilters.isEmpty() && count < 10) {
-            recommendedHeaderRow = rowCount++;
-            recommendedStartRow = rowCount;
-            rowCount += suggestedFilters.size();
-            recommendedEndRow = rowCount;
-            recommendedSectionRow = rowCount++;
-        }
-
-        if (count != 0) {
+        if (!suggestedFilters.isEmpty()) {
             filtersHeaderRow = rowCount++;
             filtersStartRow = rowCount;
             rowCount += count;
@@ -411,6 +403,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
         if (count < 10) {
             createFilterRow = rowCount++;
+            if (!suggestedFilters.isEmpty()) {
+                recommendedSectionRow = rowCount++;
+                recommendedHeaderRow = rowCount++;
+                recommendedStartRow = rowCount;
+                rowCount += suggestedFilters.size();
+                recommendedEndRow = rowCount;
+            }
         } else {
             createFilterRow = -1;
         }
