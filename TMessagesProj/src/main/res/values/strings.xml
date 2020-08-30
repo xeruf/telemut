@@ -3790,7 +3790,7 @@
     <string name="AccDescrRepeatList">Repeat, playlist</string>
     <string name="AccDescrRepeatOne">Repeat, one</string>
     <string name="AccDescrClosePlayer">Close audio player</string>
-    <string name="AccDescrPlayerSpeed">2X playback</string>
+    <string name="AccDescrPlayerSpeed">Change Audio playback speed</string>
     <string name="AccDescrStopLiveLocation">Stop sharing live location</string>
     <string name="AccDescrInstantCamera">Instant camera</string>
     <string name="AccDescrShutter">Shutter</string>

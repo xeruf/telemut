@@ -28,8 +28,10 @@ public class PlaybackSpeedButton extends TextView {
 
         setOnClickListener(v -> {
             float currentPlaybackSpeed = MediaController.getInstance().getPlaybackSpeed(isMusic);
-            if (currentPlaybackSpeed > 1.5f) {
+            if (currentPlaybackSpeed > 2.0f) {
                 MediaController.getInstance().setPlaybackSpeed(isMusic, 1.0f);
+            } else if (currentPlaybackSpeed > 1.5) {
+                MediaController.getInstance().setPlaybackSpeed(isMusic, 2.5f);
             } else if (currentPlaybackSpeed > 1) {
                 MediaController.getInstance().setPlaybackSpeed(isMusic, 1.8f);
             } else {
