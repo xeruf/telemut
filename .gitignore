@@ -6,7 +6,6 @@ obj/
 .cxx/
 *.iml
 local.properties
-API_KEYS
 *.hprof
 TMessagesProj/.externalNativeBuild/
 TMessagesProj/jni/ffmpeg/android/
