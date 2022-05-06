@@ -1835,6 +1835,7 @@
     <string name="NotificationsDefaultOff">Default (Off)</string>
     <string name="NotificationsTurnOn">Turn On</string>
     <string name="NotificationsTurnOff">Turn Off</string>
+    <string name="NotificationsHideBadge">Turn off and hide badge</string>
     <string name="BlockedUsers">Blocked Users</string>
     <string name="BlockedUsersInfo">Blocked users will not be able to contact you and will not see your Last Seen time.</string>
     <string name="BlockUserMultiTitle">Block User</string>

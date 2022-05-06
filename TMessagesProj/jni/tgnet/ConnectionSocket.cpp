@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <cerrno>
+#include <cassert>
 #include <sys/socket.h>
 #include <memory.h>
 #include <netinet/tcp.h>

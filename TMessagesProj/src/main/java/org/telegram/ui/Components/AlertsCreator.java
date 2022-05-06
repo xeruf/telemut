@@ -716,7 +716,8 @@ public class AlertsCreator {
                 LocaleController.formatString("MuteFor", R.string.MuteFor, LocaleController.formatPluralString("Hours", 1)),
                 LocaleController.formatString("MuteFor", R.string.MuteFor, LocaleController.formatPluralString("Days", 2)),
                 did == 0 && parentFragment instanceof NotificationsCustomSettingsActivity ? null : LocaleController.getString("NotificationsCustomize", R.string.NotificationsCustomize),
-                LocaleController.getString("NotificationsTurnOff", R.string.NotificationsTurnOff)
+                LocaleController.getString("NotificationsTurnOff", R.string.NotificationsTurnOff),
+                LocaleController.getString("NotificationsHideBadge", R.string.NotificationsHideBadge)
         };
 
         int[] icons = new int[]{
@@ -724,6 +725,7 @@ public class AlertsCreator {
                 R.drawable.notifications_mute1h,
                 R.drawable.notifications_mute2d,
                 R.drawable.notifications_settings,
+                R.drawable.notifications_off,
                 R.drawable.notifications_off
         };
 
