@@ -3,7 +3,7 @@
 set -e
 
 function build_one {
-	mkdir ${CPU}
+	mkdir -p ${CPU}
 	cd ${CPU}
 
 	echo "Configuring..."
@@ -39,7 +39,7 @@ checkPreRequisites
 
 cd boringssl
 
-mkdir build
+mkdir -p build
 cd build
 
 API=16
